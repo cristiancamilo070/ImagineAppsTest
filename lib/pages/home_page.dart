@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:test_flutter/models/data_model.dart';
 
 // ignore: camel_case_types
@@ -11,46 +12,63 @@ class Home_page extends StatefulWidget {
 
 // ignore: camel_case_types
 class _Home_pageState extends State<Home_page> {
-   late Future<List<Response>> completeData;
+   //late Future<List<Response>> completeData;
+  late Future<Post> post;
+  @override
+  void initState() {
+    super.initState();
+    post: fetchPost();
+  }
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       appBar: AppBar(
         leading: const Icon(Icons.ac_unit_sharp),
         title: const Text('Imgapps')
         ),
-      body: FutureBuilder<List<Response>>(
-        future: getData(),
-        builder: (BuildContext context,AsyncSnapshot<List> snapshot) {
-          if (snapshot.hasData) {
-            return  Column(
-              children: [
-                Expanded(
-                    child: ListView.builder(
-                  itemCount: snapshot.data?.length,
-                  itemBuilder: (BuildContext context,int index) {
-                    return ListTile(
-                      //testing with this ones 
-                      title: Text(snapshot.data![index]["Hora"]),
-                      subtitle: Text(snapshot.data![index]["Máximo"]),
-                    );
-                  },
-                ))
-              ],
-            );
-            
-          }else if (snapshot.hasError) {
-                return Text(snapshot.error.toString());
-              } else {
-                return const Center(child: CircularProgressIndicator());
-              }
-        }
-        )
+      body: FutureBuilder<Post>(
+  future: fetchPost(),
+  builder: (context, snapshot) {
+    if (snapshot.hasData) {
+      return Text(snapshot.data.toString());
+    } else if (snapshot.hasError) {
+      return Text("${snapshot.error}");
+    }
 
-    );
+        // Por defecto, muestra un loading spinner
+        return CircularProgressIndicator();
+      },
+    )
+    //   FutureBuilder<List<Response>>(
+    //     future: getData(),
+    //     builder: (BuildContext context,AsyncSnapshot<List> snapshot) {
+    //       if (snapshot.hasData) {
+    //         return  Column(
+    //           children: [
+    //             Expanded(
+    //                 child: ListView.builder(
+    //               itemCount: snapshot.data?.length,
+    //               itemBuilder: (BuildContext context,int index) {
+    //                 return ListTile(
+    //                   //testing with this ones 
+    //                   title: Text(snapshot.data![index]["Hora"]),
+    //                   subtitle: Text(snapshot.data![index]["Máximo"]),
+    //                 );
+    //               },
+    //             ))
+    //           ],
+    //         );
+            
+    //       }else if (snapshot.hasError) {
+    //             return Text(snapshot.error.toString());
+    //           } else {
+    //             return const Center(child: CircularProgressIndicator());
+    //           }
+    //     }
+    //     )
+
+     );
 
 
 

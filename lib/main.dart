@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:test_flutter/pages/home_page.dart';
 
-void main() => runApp(const MyApp());
+import 'models/data_model.dart';
+
+void main() => runApp(MyApp(post: fetchPost()));
+
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final Future<Post> post;
+  const MyApp({Key? key, required this.post}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
