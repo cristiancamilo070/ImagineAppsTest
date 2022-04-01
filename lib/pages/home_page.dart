@@ -31,44 +31,29 @@ class _Home_pageState extends State<Home_page> {
   future: fetchPost(),
   builder: (context, snapshot) {
     if (snapshot.hasData) {
-      return Text(snapshot.data.toString());
-    } else if (snapshot.hasError) {
+      return  Column(
+              children: [
+                Expanded(
+                child: ListView.builder(
+                 // itemCount: snapshot.data.length,
+                  itemBuilder: (BuildContext context,int index) {
+                    return ListTile(
+                     // title: Text(snapshot.data!.maximo),
+                     // subtitle: Text(snapshot.data![index]["Máximo"]),
+                    );
+                  },
+                ))
+              ],
+            );
+          }
+     else if (snapshot.hasError) {
       return Text("${snapshot.error}");
-    }
-
-        // Por defecto, muestra un loading spinner
-        return CircularProgressIndicator();
+    } else {
+             return const Center(child: CircularProgressIndicator());
+        }
       },
     )
-    //   FutureBuilder<List<Response>>(
-    //     future: getData(),
-    //     builder: (BuildContext context,AsyncSnapshot<List> snapshot) {
-    //       if (snapshot.hasData) {
-    //         return  Column(
-    //           children: [
-    //             Expanded(
-    //                 child: ListView.builder(
-    //               itemCount: snapshot.data?.length,
-    //               itemBuilder: (BuildContext context,int index) {
-    //                 return ListTile(
-    //                   //testing with this ones 
-    //                   title: Text(snapshot.data![index]["Hora"]),
-    //                   subtitle: Text(snapshot.data![index]["Máximo"]),
-    //                 );
-    //               },
-    //             ))
-    //           ],
-    //         );
-            
-    //       }else if (snapshot.hasError) {
-    //             return Text(snapshot.error.toString());
-    //           } else {
-    //             return const Center(child: CircularProgressIndicator());
-    //           }
-    //     }
-    //     )
-
-     );
+  );
 
 
 
