@@ -23,6 +23,7 @@ String? stringResponse;
 Map? mapResponse;
 Map? dataResponse;
 int? index;
+List? listResponse=[];
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -33,6 +34,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   Future apiCall()async{
     http.Response response;
     //https://reqres.in/api/users/2 exercise vidio
@@ -57,7 +59,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Api Demo'),
+        title: Text('Fetch Data'),
       ),
       body: Center(
         child: Container(
@@ -68,6 +70,7 @@ class _HomePageState extends State<HomePage> {
             color: Colors.amber
           ),
           
+          //con map Response
           child: mapResponse==null?const Text("Data is loading"):
                   //Complete json   
                     //Text(stringResponse.toString()),
