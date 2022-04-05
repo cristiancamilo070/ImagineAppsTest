@@ -4,7 +4,9 @@
 
 import 'dart:convert';
 
-Map<String, Response> responseFromJson(String str) => Map.from(json.decode(str)).map((k, v) => MapEntry<String, Response>(k, Response.fromJson(v)));
+Map<String, Response> responseFromJson(String str) 
+    => Map.from(json.decode(str)).map((k, v)
+      => MapEntry<String, Response>(k, Response.fromJson(v)));
 
 String responseToJson(Map<String, Response> data) => json.encode(Map.from(data).map((k, v) => MapEntry<String, dynamic>(k, v.toJson())));
 
