@@ -1,3 +1,5 @@
 # Fetch data from an API
-technical knowledge test interview for an Flutter vacant
+
+In this proyect you can see a simple way to *fetch data from a json* that contains similar maps
+
 Using: HTTP  
