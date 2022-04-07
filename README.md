@@ -1,3 +1,6 @@
 # Fetch data from an API
-technical knowledge test interview for an Flutter vacant
-Using: HTTP  
+
+In this proyect you can see a simple way to *fetch data from a json* that contains similar maps, this maps will be shown in ListBuild.builder, but also  in the comments u'll see how you can deploy those in a simple text.
+
+
+## Using: HTTP 
