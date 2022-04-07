@@ -88,7 +88,6 @@ class _HomePageState extends State<HomePage> {
             
             ),
 
-
           // LIST BUILDER
           // child:  mapResponse==null?    const Text("Data is loading"):
           //         ListView.builder (
