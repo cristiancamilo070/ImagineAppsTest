@@ -58,21 +58,51 @@ class _HomePageState extends State<HomePage> {
             borderRadius: BorderRadius.circular(20),
             color: Colors.amber
           ),
-
-          // LIST BUILDER
-          child:  mapResponse==null?    const Text("Data is loading"):
-                  ListView.builder (
+           child: FutureBuilder (
+            future: apiCall(),
+            builder: (BuildContext context, AsyncSnapshot snapshot){
+        //       if(snapshot.connectionState == ConnectionState.waiting){
+        //         return Center(
+        //           child: CircularProgressIndicator(),
+        //         );
+        // }
+        // if(snapshot.hasError){
+        //   return Center(
+        //     child: Text('error fatch'),
+        //   );
+        // }
+                
+                return ListView.builder (
                   itemCount: mapResponse!.length,
                   itemBuilder: (BuildContext context, int index){
                     return Row(
                       children: <Widget>[
                         Text(key[index].toString()+": "),
-                        const Divider(height: 20,),
+                        const Divider(height: 30,),
                         Text(mapResponse![key[index]]["Hora"].toString())
                       ],
                     );
                   },
-                )
+                );
+              }
+            
+            ),
+
+
+          // LIST BUILDER
+          // child:  mapResponse==null?    const Text("Data is loading"):
+          //         ListView.builder (
+          //         itemCount: mapResponse!.length,
+          //         itemBuilder: (BuildContext context, int index){
+          //           return Row(
+          //             children: <Widget>[
+          //               Text(key[index].toString()+": "),
+          //               const Divider(height: 20,),
+          //               Text(mapResponse![key[index]]["Hora"].toString())
+          //             ],
+          //           );
+          //         },
+          //       )
 
 
       //JUST RETURNING TEXT 
