@@ -4,5 +4,4 @@ In this proyect you can see a simple way to *fetch data from a json* that contai
 ### HTTP was used on this proyect
 ## Preview proyect image 
 
-![Preview proyect image](img src="/assets/fetch.jpg" width="200" height="490")
-
+![Preview proyect image]<img src="/assets/fetch.jpg" width="200" height="490">
