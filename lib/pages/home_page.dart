@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'dart:math' as math;
 
 
 String? stringResponse;
@@ -54,35 +55,37 @@ class _HomePageState extends State<HomePage> {
         child: Container(
           // height: 500,
           // width: 350,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.amber
-          ),
-           child: FutureBuilder (
-            future: apiCall(),
-            builder: (BuildContext context, AsyncSnapshot snapshot){
-        //       if(snapshot.connectionState == ConnectionState.waiting){
-        //         return Center(
-        //           child: CircularProgressIndicator(),
-        //         );
-        // }
-        // if(snapshot.hasError){
-        //   return Center(
-        //     child: Text('error fatch'),
-        //   );
-        // }
+        
+           child: mapResponse==null           ?        const Text("Data is loading"): 
+            FutureBuilder (
+              future: apiCall(),
+              builder: (BuildContext context, AsyncSnapshot snapshot){
                 
                 return ListView.builder (
                   itemCount: mapResponse!.length,
                   itemBuilder: (BuildContext context, int index){
-                    return Row(
-                      children: <Widget>[
-                        Text(key[index].toString()+": "),
-                        const Divider(height: 30,),
-                        Text(mapResponse![key[index]]["Hora"].toString())
-                      ],
+
+                    return Card(
+                      child: ListTile(
+                        title: Text( key[index].toString()+ mapResponse![key[index]]["Mes"].toString() +": "),
+                        subtitle:Text(mapResponse![key[index]]["Hora"].toString()),
+                        leading: CircleAvatar(
+                          backgroundColor: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(0.8),
+                          child: const Icon(Icons.bolt_sharp),
+                        ),
+                      ),
                     );
+                    
+                    
+                    // Row(
+                    //   children: <Widget>[
+                    //     Text(key[index].toString()+": "),
+                    //     const Divider(height: 30,),
+                    //     Text(mapResponse![key[index]]["Hora"].toString())
+                    //   ],
+                    // );
                   },
+                  
                 );
               }
             

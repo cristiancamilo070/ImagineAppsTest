@@ -1,7 +1,4 @@
-// To parse this JSON data, do
-//
-//     final response = responseFromJson(jsonString);
-
+// To parse this JSON data, Not used
 import 'dart:convert';
 
 Map<String, Response> responseFromJson(String str) 
